@@ -120,7 +120,7 @@
             margin: 0 auto;
         }
 
-        /* Новая парящая фигура main_logo.avif */
+        /* Парящая фигура main_logo.avif */
         .premium-desktop-asset {
             width: 140px;
             height: auto;
@@ -363,8 +363,8 @@
 
         .qr-wrapper {
             margin: 15px auto;
-            width: 140px;
-            height: 140px;
+            width: 160px;
+            height: 160px;
             background: #ffffff;
             border-radius: 12px;
             display: flex;
@@ -374,8 +374,9 @@
         }
 
         .qr-wrapper img {
-            width: 115px;
-            height: 115px;
+            width: 140px;
+            height: 140px;
+            object-fit: contain;
         }
 
         .phone-text {
@@ -389,7 +390,7 @@
 
         .phone-text:hover { color: #ff0000; }
 
-        /* ИНТЕРАКТИВНАЯ СИСТЕМА КНОПКИ ЗВОНКА СПРАВА СНИЗУ */
+        /* Фиксированный виджет звонка */
         .fixed-call-widget {
             position: fixed;
             bottom: 25px;
@@ -499,7 +500,7 @@
                         <h2>МТС <span>Premium</span></h2>
                         <p>Хватит переплачивать разным корпорациям. Получи единый комплекс развлечений, связи и мобильности в одном месте.</p>
                         
-                        <!-- Бренд-иконки под баннером -->
+                        <!-- Вырезанные бренд-иконки под баннером -->
                         <div class="brand-partners">
                             <div class="brand-badge"><img src="images.jpg" alt="KION"> KION</div>
                             <div class="brand-badge"><img src="6425f5ad6d1f8.png" alt="Музыка"> Музыка</div>
@@ -507,7 +508,7 @@
                             <div class="brand-badge"><img src="unnamed.png" alt="Юрент"> Самокаты</div>
                         </div>
                     </div>
-                    <!-- Настоящая парящая фигура main_logo.avif -->
+                    <!-- Парящая фигура main_logo.avif -->
                     <img src="main_logo.avif" alt="MTS Premium Asset" class="premium-desktop-asset">
                 </section>
 
@@ -530,11 +531,11 @@
                             </div>
                         </div>
                         <div class="feature-card">
-                            <!-- Новая плоская 2D иконка для МЫ МТС -->
+                            <!-- Плоская 2D иконка для МЫ МТС -->
                             <div class="feature-icon-wrapper"><img src="depositphotos_68108311-stock-illustration-team-icon-rounded-squares-butto.jpg" alt="Семья МЫ МТС"></div>
                             <div class="feature-info">
                                 <h4>👨‍👩‍👧‍👦 Семейная подписка «МЫ МТС»</h4>
-                                <p>Объедини до 5 номеров твоих близких, общий интернет-пул и домашний Wi-Fi до 1 Гбит/с в один единый удобный счет.</p>
+                                <p>Объедини до 5 номеров твоих близких, общий интернет-пул and домашний Wi-Fi до 1 Гбит/с в один единый удобный счет.</p>
                             </div>
                         </div>
                         <div class="feature-card">
@@ -625,14 +626,17 @@
                 <nav class="actions-group" aria-label="Экосистемные продукты">
                     <a href="https://premium.mts.ru/" target="_blank" class="btn btn-premium">Активировать МТС Premium</a>
                     <a href="https://kaluga.mts.ru/personal/dom/home-allmts" target="_blank" class="btn btn-primary">⚡ Подключить Интернет + ТВ Гбит/с</a>
-                    <a href="tel:+79641490462" class="btn btn-secondary">📞 Связаться со мной напрямую</a>
+                    <!-- Кнопка теперь ведёт по официальной прямой ссылке на акцию МТС -->
+                    <a href="https://kaluga.mts.ru/personal/vse-akcii/skidka-50-na-tarif-pri-perehode-ot-drugogo-operatora" target="_blank" class="btn btn-secondary">🔥 Скидка 50% на связь при переносе номера</a>
                 </nav>
 
-                <!-- Контакты и QR -->
+                <!-- Контакты и оригинальный красный QR-код -->
                 <footer class="footer-zone">
-                    <p style="font-size: 13px; color: #626266; margin-bottom: 5px;">Наведи камеру для мгновенной связи:</p>
+                    <!-- Заменил текст на интригующий призыв с символом подарка -->
+                    <p style="font-size: 13px; color: #626266; margin-bottom: 5px; font-weight: 500;">Наведи камеру получишь подарок! 🎁</p>
                     <div class="qr-wrapper">
-                        <img src="qr_code.png" alt="QR-код Михаила">
+                        <!-- Подключен твой оригинальный красный QR-код qr-code.png -->
+                        <img src="qr-code.png" alt="Официальный QR-код МТС">
                     </div>
                     <p style="font-size: 13px; color: #626266;">Твой персональный эксперт Михаил</p>
                     <a href="tel:+79641490462" class="phone-text">+7 (964) 149-04-62</a>
