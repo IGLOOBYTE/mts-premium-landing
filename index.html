@@ -120,7 +120,7 @@
             margin: 0 auto;
         }
 
-        /* Интегрированная пушка-смартфон Premium без лишних элементов */
+        /* Новая парящая фигура main_logo.avif */
         .premium-desktop-asset {
             width: 140px;
             height: auto;
@@ -344,7 +344,7 @@
 
         .btn-secondary {
             background-color: #ffffff;
-            color: #ff0000; /* Строго красный */
+            color: #ff0000;
             border: 1px solid #ff0000;
         }
 
@@ -388,6 +388,66 @@
         }
 
         .phone-text:hover { color: #ff0000; }
+
+        /* ИНТЕРАКТИВНАЯ СИСТЕМА КНОПКИ ЗВОНКА СПРАВА СНИЗУ */
+        .fixed-call-widget {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .call-bubble {
+            background: #ffffff;
+            color: #1d1d1f;
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 13px;
+            font-weight: 500;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e5ea;
+            max-width: 220px;
+            opacity: 0;
+            transform: translateX(10px);
+            will-change: transform, opacity;
+            animation: fadeInBubble 0.5s ease 1s forwards;
+            pointer-events: auto;
+        }
+
+        @keyframes fadeInBubble {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .call-button-trigger {
+            width: 60px;
+            height: 60px;
+            background-color: #ff0000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            text-decoration: none;
+            box-shadow: 0 8px 24px rgba(255, 0, 0, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            pointer-events: auto;
+            will-change: transform;
+        }
+
+        .call-button-trigger:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 28px rgba(255, 0, 0, 0.4);
+        }
+
+        .call-button-trigger svg {
+            width: 26px;
+            height: 26px;
+            fill: currentColor;
+        }
 
         /* 🖥️ ДВУХКОЛОННЫЙ МАКЕТ ДЛЯ ПК ВЕРСИИ */
         @media (min-width: 900px) {
@@ -433,13 +493,13 @@
             <!-- ЛЕВАЯ КОЛОНКА -->
             <div class="left-column">
                 
-                <!-- Hero-баннер со смартфоном из Снимок экрана 2026-07-02 124609.png -->
+                <!-- Hero-баннер со смартфоном -->
                 <section class="hero-banner">
                     <div class="hero-text">
                         <h2>МТС <span>Premium</span></h2>
                         <p>Хватит переплачивать разным корпорациям. Получи единый комплекс развлечений, связи и мобильности в одном месте.</p>
                         
-                        <!-- Вырезанные бренд-иконки под баннером -->
+                        <!-- Бренд-иконки под баннером -->
                         <div class="brand-partners">
                             <div class="brand-badge"><img src="images.jpg" alt="KION"> KION</div>
                             <div class="brand-badge"><img src="6425f5ad6d1f8.png" alt="Музыка"> Музыка</div>
@@ -447,8 +507,8 @@
                             <div class="brand-badge"><img src="unnamed.png" alt="Юрент"> Самокаты</div>
                         </div>
                     </div>
-                    <!-- Настоящий баннер смартфона без лишних элементов -->
-                    <img src="Снимок экрана 2026-07-02 124609.png" alt="MTS Premium Phone Asset" class="premium-desktop-asset">
+                    <!-- Настоящая парящая фигура main_logo.avif -->
+                    <img src="main_logo.avif" alt="MTS Premium Asset" class="premium-desktop-asset">
                 </section>
 
                 <!-- СЕКЦИЯ ПРЕИМУЩЕСТВ -->
@@ -459,14 +519,14 @@
                             <div class="feature-icon-wrapper"><img src="images.jpg" alt="KION"></div>
                             <div class="feature-info">
                                 <h4>🎬 Онлайн-кинотеатр KION</h4>
-                                <p>Доступ к оригинальным сериалам KION Originals, ТВ-каналам и мультискрину на 5 устройств для всей семьи[cite: 4].</p>
+                                <p>Доступ к оригинальным сериалам KION Originals, ТВ-каналам и мультискрину на 5 устройств для всей семьи.</p>
                             </div>
                         </div>
                         <div class="feature-card">
                             <div class="feature-icon-wrapper"><img src="unnamed.png" alt="Самокат"></div>
                             <div class="feature-info">
                                 <h4>🔥 Молодёжный «Тариф 24»</h4>
-                                <p>Копишь лишние минуты? Преврати этот цифровой мусор в реальные поездки на самокатах МТС Юрент по курсу 1:1 в один клик[cite: 4]!</p>
+                                <p>Копишь лишние минуты? Преврати этот цифровой мусор в реальные поездки на самокатах МТС Юрент по курсу 1:1 в один клик!</p>
                             </div>
                         </div>
                         <div class="feature-card">
@@ -474,21 +534,21 @@
                             <div class="feature-icon-wrapper"><img src="depositphotos_68108311-stock-illustration-team-icon-rounded-squares-butto.jpg" alt="Семья МЫ МТС"></div>
                             <div class="feature-info">
                                 <h4>👨‍👩‍👧‍👦 Семейная подписка «МЫ МТС»</h4>
-                                <p>Объедини до 5 номеров твоих близких, общий интернет-пул и домашний Wi-Fi до 1 Гбит/с в один единый удобный счет[cite: 4].</p>
+                                <p>Объедини до 5 номеров твоих близких, общий интернет-пул и домашний Wi-Fi до 1 Гбит/с в один единый удобный счет.</p>
                             </div>
                         </div>
                         <div class="feature-card">
                             <div class="feature-icon-wrapper"><img src="6425f5ad6d1f8.png" alt="Музыка"></div>
                             <div class="feature-info">
                                 <h4>🎵 Трафик на музыку — 0 ₽</h4>
-                                <p>Слушай миллионы треков в МТС Музыке круглые сутки. Абоненты МТС не расходуют на стриминг ни единого мегабайта[cite: 4].</p>
+                                <p>Слушай миллионы треков в МТС Музыке круглые сутки. Абоненты МТС не расходуют на стриминг ни единого мегабайта.</p>
                             </div>
                         </div>
                         <div class="feature-card">
                             <div class="feature-icon-wrapper"><img src="81d257a7923783064055014ebe1e060c_icon.png" alt="МТС Строки"></div>
                             <div class="feature-info">
                                 <h4>☁️ 512 ГБ в Облаке, Книги и Антиспам</h4>
-                                <p>МТС Строки для чтения, надежная защита от спама и огромное облачное хранилище уже внутри бандла[cite: 4].</p>
+                                <p>МТС Строки для чтения, надежная защита от спама и огромное облачное хранилище уже внутри бандла.</p>
                             </div>
                         </div>
                     </div>
@@ -536,7 +596,7 @@
                         </table>
                     </div>
                     <div class="insight-box">
-                        <b>Уязвимость конкурентов:</b> Клиенты других экосистем переплачивают дважды — оператору за связь и компании за контент[cite: 4]. МТС полностью решает эту проблему, объединяя инфраструктуру и развлечения[cite: 4].
+                        <b>Уязвимость конкурентов:</b> Клиенты других экосистем переплачивают дважды — оператору за связь и компании за контент. МТС полностью решает эту проблему, объединяя инфраструктуру и развлечения.
                     </div>
                 </section>
                 
@@ -582,6 +642,18 @@
             
         </div>
 
+    </div>
+
+    <!-- ФИКСИРОВАННЫЙ ВИДЖЕТ ЗВОНКА (СПРАВА СНИЗУ) -->
+    <div class="fixed-call-widget">
+        <div class="call-bubble">
+            Здравствуйте! Позвоните нам, и мы подберём вам тариф ниже рынка!
+        </div>
+        <a href="tel:+79641490462" class="call-button-trigger" title="Позвонить Михаилу">
+            <svg viewBox="0 0 24 24">
+                <path d="M6.62 10.79a15.15 15.15 0 0 0 6.59 6.59l2.2-2.2c.28-.28.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.24.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+            </svg>
+        </a>
     </div>
 
 </body>
