@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цифровая экосистема МТС — Расчет максимальной выгоды</title>
+    <!-- Подключаем шрифт, идентичный MTS Sans по геометрии -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* Базовые стили по гайдлайнам МТС */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Geologica', 'Arial', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: #f4f4f7;
+            color: #1d1d1f;
+            line-height: 1.5;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Главный контейнер */
+        .container {
+            width: 100%;
+            max-width: 1150px;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+            border: 1px solid #e5e5ea;
+            opacity: 0;
+            transform: translateY(10px);
+            will-change: transform, opacity;
+            animation: fadeInPage 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes fadeInPage {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Шапка сайта */
+        header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #f0f0f2;
+            margin-bottom: 30px;
+        }
+
+        .mts-official-logo {
+            width: 65px;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1d1d1f;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            font-size: 14px;
+            color: #626266;
+            margin-top: 2px;
+        }
+
+        /* Макет разметки */
+        .main-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* Главный Hero-баннер со смартфоном */
+        .hero-banner {
+            background: linear-gradient(135deg, #f4f4f7 0%, #ffffff 100%);
+            border-radius: 20px;
+            padding: 35px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+            border: 1px solid #e5e5ea;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-text h2 {
+            font-size: calc(1.8rem + 1vw);
+            font-weight: 700;
+            color: #1d1d1f;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 15px;
+        }
+
+        .hero-text h2 span {
+            color: #ff0000;
+        }
+
+        .hero-text p {
+            font-size: 15px;
+            color: #2c2c2e;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Интегрированная пушка-смартфон Premium без лишних элементов */
+        .premium-desktop-asset {
+            width: 140px;
+            height: auto;
+            object-fit: contain;
+            will-change: transform;
+            animation: floatAsset 4s ease-in-out infinite;
+        }
+
+        @keyframes floatAsset {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Блок иконок под баннером */
+        .brand-partners {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .brand-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #ffffff;
+            padding: 8px 16px;
+            border-radius: 10px;
+            border: 1px solid #e5e5ea;
+            font-size: 13px;
+            font-weight: 500;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        .brand-badge img {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        /* СЕКЦИЯ ПРЕИМУЩЕСТВ */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .feature-card {
+            background: #f4f4f7;
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: none;
+            transition: all 0.2s ease;
+        }
+
+        .feature-card:hover {
+            background: #ebebef;
+            transform: translateY(-1px);
+        }
+
+        .feature-icon-wrapper {
+            width: 32px;
+            height: 32px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-icon-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 6px;
+        }
+
+        .feature-info h4 {
+            font-size: 14px;
+            font-weight: 500;
+            color: #1d1d1f;
+            margin-bottom: 2px;
+        }
+
+        .feature-info p {
+            font-size: 13px;
+            color: #626266;
+            font-weight: 400;
+        }
+
+        /* Финансовый калькулятор */
+        .benefit-block {
+            background: #ffffff;
+            border: 2px solid #ff0000;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 8px 24px rgba(255, 0, 0, 0.02);
+        }
+
+        .benefit-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            font-size: 15px;
+        }
+
+        .benefit-row:not(:last-child) {
+            border-bottom: 1px dashed #e5e5ea;
+        }
+
+        .benefit-row.total {
+            border-top: 2px solid #ff0000;
+            margin-top: 10px;
+            padding-top: 15px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .highlight-red {
+            color: #ff0000;
+        }
+
+        /* Заголовки секций */
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #1d1d1f;
+            letter-spacing: -0.3px;
+        }
+
+        /* Таблица */
+        .table-container {
+            overflow-x: auto;
+            border-radius: 16px;
+            border: 1px solid #e5e5ea;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f7;
+            font-weight: 500;
+            padding: 14px;
+            color: #626266;
+        }
+
+        td {
+            padding: 14px;
+            border-bottom: 1px solid #f4f4f7;
+        }
+
+        tr:hover td {
+            background-color: #fffcfc;
+        }
+
+        .insight-box {
+            background-color: #fff5f5;
+            border-left: 4px solid #ff0000;
+            padding: 14px;
+            border-radius: 0 12px 12px 0;
+            font-size: 13px;
+            color: #2c2c2e;
+            font-weight: 400;
+            margin-top: 15px;
+        }
+
+        /* Кнопки */
+        .actions-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.2s ease;
+        }
+
+        /* Кнопка Premium с оригинальным градиентом */
+        .btn-premium {
+            background: linear-gradient(135deg, #7A5CFF 0%, #4E2BFF 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(78, 43, 255, 0.15);
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(78, 43, 255, 0.25);
+        }
+
+        .btn-primary {
+            background-color: #ff0000;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(255, 0, 0, 0.1);
+        }
+
+        .btn-primary:hover {
+            background-color: #d90000;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(255, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background-color: #ffffff;
+            color: #ff0000; /* Строго красный */
+            border: 1px solid #ff0000;
+        }
+
+        .btn-secondary:hover {
+            background-color: #fff5f5;
+            transform: translateY(-1px);
+        }
+
+        /* Подвал */
+        .footer-zone {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f2;
+        }
+
+        .qr-wrapper {
+            margin: 15px auto;
+            width: 140px;
+            height: 140px;
+            background: #ffffff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #e5e5ea;
+        }
+
+        .qr-wrapper img {
+            width: 115px;
+            height: 115px;
+        }
+
+        .phone-text {
+            color: #1d1d1f;
+            font-size: 22px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            letter-spacing: -0.5px;
+        }
+
+        .phone-text:hover { color: #ff0000; }
+
+        /* 🖥️ ДВУХКОЛОННЫЙ МАКЕТ ДЛЯ ПК ВЕРСИИ */
+        @media (min-width: 900px) {
+            .container { padding: 40px; }
+            .main-layout { flex-direction: row; gap: 40px; }
+            .left-column { flex: 1.25; display: flex; flex-direction: column; gap: 30px; }
+            .right-column { 
+                flex: 0.75; 
+                display: flex; 
+                flex-direction: column; 
+                gap: 25px; 
+                background-color: #f4f4f7; 
+                padding: 24px; 
+                border-radius: 20px; 
+                border: 1px solid #e5e5ea;
+                align-self: flex-start;
+                position: sticky;
+                top: 20px;
+            }
+            .hero-banner { flex-direction: row; text-align: left; padding: 45px 35px; }
+            .hero-text p { margin: 0; }
+            .features-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+            .footer-zone { border-top: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Шапка -->
+        <header>
+            <img src="mts_logo_cmyk.png" alt="МТС Экосистема" class="mts-official-logo">
+            <div>
+                <h1>Цифровая экосистема МТС</h1>
+                <p>Твой персональный путеводитель по тотальной выгоде</p>
+            </div>
+        </header>
+
+        <!-- Макет Лендинга -->
+        <div class="main-layout">
+            
+            <!-- ЛЕВАЯ КОЛОНКА -->
+            <div class="left-column">
+                
+                <!-- Hero-баннер со смартфоном из Снимок экрана 2026-07-02 124609.png -->
+                <section class="hero-banner">
+                    <div class="hero-text">
+                        <h2>МТС <span>Premium</span></h2>
+                        <p>Хватит переплачивать разным корпорациям. Получи единый комплекс развлечений, связи и мобильности в одном месте.</p>
+                        
+                        <!-- Вырезанные бренд-иконки под баннером -->
+                        <div class="brand-partners">
+                            <div class="brand-badge"><img src="images.jpg" alt="KION"> KION</div>
+                            <div class="brand-badge"><img src="6425f5ad6d1f8.png" alt="Музыка"> Музыка</div>
+                            <div class="brand-badge"><img src="81d257a7923783064055014ebe1e060c_icon.png" alt="Строки"> Строки</div>
+                            <div class="brand-badge"><img src="unnamed.png" alt="Юрент"> Самокаты</div>
+                        </div>
+                    </div>
+                    <!-- Настоящий баннер смартфона без лишних элементов -->
+                    <img src="Снимок экрана 2026-07-02 124609.png" alt="MTS Premium Phone Asset" class="premium-desktop-asset">
+                </section>
+
+                <!-- СЕКЦИЯ ПРЕИМУЩЕСТВ -->
+                <section>
+                    <h3 class="section-title">Твои эксклюзивные преимущества</h3>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon-wrapper"><img src="images.jpg" alt="KION"></div>
+                            <div class="feature-info">
+                                <h4>🎬 Онлайн-кинотеатр KION</h4>
+                                <p>Доступ к оригинальным сериалам KION Originals, ТВ-каналам и мультискрину на 5 устройств для всей семьи[cite: 4].</p>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon-wrapper"><img src="unnamed.png" alt="Самокат"></div>
+                            <div class="feature-info">
+                                <h4>🔥 Молодёжный «Тариф 24»</h4>
+                                <p>Копишь лишние минуты? Преврати этот цифровой мусор в реальные поездки на самокатах МТС Юрент по курсу 1:1 в один клик[cite: 4]!</p>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <!-- Новая плоская 2D иконка для МЫ МТС -->
+                            <div class="feature-icon-wrapper"><img src="depositphotos_68108311-stock-illustration-team-icon-rounded-squares-butto.jpg" alt="Семья МЫ МТС"></div>
+                            <div class="feature-info">
+                                <h4>👨‍👩‍👧‍👦 Семейная подписка «МЫ МТС»</h4>
+                                <p>Объедини до 5 номеров твоих близких, общий интернет-пул и домашний Wi-Fi до 1 Гбит/с в один единый удобный счет[cite: 4].</p>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon-wrapper"><img src="6425f5ad6d1f8.png" alt="Музыка"></div>
+                            <div class="feature-info">
+                                <h4>🎵 Трафик на музыку — 0 ₽</h4>
+                                <p>Слушай миллионы треков в МТС Музыке круглые сутки. Абоненты МТС не расходуют на стриминг ни единого мегабайта[cite: 4].</p>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon-wrapper"><img src="81d257a7923783064055014ebe1e060c_icon.png" alt="МТС Строки"></div>
+                            <div class="feature-info">
+                                <h4>☁️ 512 ГБ в Облаке, Книги и Антиспам</h4>
+                                <p>МТС Строки для чтения, надежная защита от спама и огромное облачное хранилище уже внутри бандла[cite: 4].</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Сравнительный анализ -->
+                <section>
+                    <h3 class="section-title">Сравнение подписок на рынке (2025–2026)</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Критерий бизнес-оценки</th>
+                                    <th>MTC Premium</th>
+                                    <th>Яндекс Плюс</th>
+                                    <th>МегаФон / Т-Банк</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><b>Базовая цена</b></td>
+                                    <td class="highlight-red"><b>349 ₽/мес.</b></td>
+                                    <td>449 ₽/мес.</td>
+                                    <td>От 299 до 460 ₽</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Телеком-ядро (+50 ГБ)</b></td>
+                                    <td><b>Включено</b> (Защита от спама)</td>
+                                    <td>Отсутствует (платите отдельно)</td>
+                                    <td>Частично / Ограничено</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Стриминг (Кино / ТВ)</b></td>
+                                    <td><b>KION</b> (Эксклюзивный контент)</td>
+                                    <td>Кинопоиск</td>
+                                    <td>Сторонние витрины (IVI/START)</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Физическая мобильность</b></td>
+                                    <td><b>МТС Юрент</b> (0 ₽ start, 5% кэшбэк)</td>
+                                    <td>Яндекс Go Самокаты</td>
+                                    <td>Отсутствует</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="insight-box">
+                        <b>Уязвимость конкурентов:</b> Клиенты других экосистем переплачивают дважды — оператору за связь и компании за контент[cite: 4]. МТС полностью решает эту проблему, объединяя инфраструктуру и развлечения[cite: 4].
+                    </div>
+                </section>
+                
+            </div>
+
+            <!-- ПРАВАЯ КОЛОНКА (Фиксация при скролле) -->
+            <div class="right-column">
+                
+                <!-- Блок расчета выгоды -->
+                <section class="benefit-block">
+                    <div class="benefit-row">
+                        <span>Сервисы по отдельности:</span>
+                        <span style="text-decoration: line-through; color: #86868b;">~1 500 ₽/мес.</span>
+                    </div>
+                    <div class="benefit-row">
+                        <span>В МТС Premium:</span>
+                        <span class="highlight-red" style="font-weight: bold;">349 ₽/мес.</span>
+                    </div>
+                    <div class="benefit-row total">
+                        <span>Экономия:</span>
+                        <span class="highlight-red">13 000 ₽ / год!</span>
+                    </div>
+                </section>
+
+                <!-- Кнопки действий -->
+                <nav class="actions-group" aria-label="Экосистемные продукты">
+                    <a href="https://premium.mts.ru/" target="_blank" class="btn btn-premium">Активировать МТС Premium</a>
+                    <a href="https://kaluga.mts.ru/personal/dom/home-allmts" target="_blank" class="btn btn-primary">⚡ Подключить Интернет + ТВ Гбит/с</a>
+                    <a href="tel:+79641490462" class="btn btn-secondary">📞 Связаться со мной напрямую</a>
+                </nav>
+
+                <!-- Контакты и QR -->
+                <footer class="footer-zone">
+                    <p style="font-size: 13px; color: #626266; margin-bottom: 5px;">Наведи камеру для мгновенной связи:</p>
+                    <div class="qr-wrapper">
+                        <img src="qr_code.png" alt="QR-код Михаила">
+                    </div>
+                    <p style="font-size: 13px; color: #626266;">Твой персональный эксперт Михаил</p>
+                    <a href="tel:+79641490462" class="phone-text">+7 (964) 149-04-62</a>
+                </footer>
+                
+            </div>
+            
+        </div>
+
+    </div>
+
+</body>
+</html>
